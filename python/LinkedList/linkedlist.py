@@ -1,6 +1,3 @@
-from tkinter import N
-
-
 class LinkedNode:
     def __init__(self, data):
         self.data = data
