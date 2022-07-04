@@ -23,6 +23,17 @@ assert heap1.dataList[1] == 45
 assert heap1.dataList[2] == 25
 assert heap1.dataList[3] == 40
 
+max_value = heap1.pop()
+assert max_value == 50
+print("pop 50", heap1.dataList)
+assert heap1.dataList[0] == 45
+assert heap1.dataList[1] == 40
+assert heap1.dataList[2] == 25
+assert heap1.dataList[3] == 20
+assert heap1.dataList[4] == 35
+assert heap1.dataList[5] == 10
+assert heap1.dataList[6] == 15
+
 heap2 = Heap(inputs, False)
 print(heap2.dataList)
 assert heap2.dataList == deque([10, 25, 15, 50, 35, 40, 20])
