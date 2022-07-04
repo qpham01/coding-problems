@@ -8,9 +8,9 @@ def mostArea(inputs: list):
     max_area = 0
     p1 = 0
     p2 = l - 1
-    calculations = 0
+    #calculations = 0
     while (p1 < p2):
-        calculations += 1
+        #calculations += 1
         h1 = inputs[p1]
         h2 = inputs[p2]
         min_h = min(h1, h2)
@@ -21,7 +21,7 @@ def mostArea(inputs: list):
             p1 += 1
         else:
             p2 -= 1
-    print("Calculations", calculations)
+    #print("Calculations", calculations)
     return max_area
 
 
