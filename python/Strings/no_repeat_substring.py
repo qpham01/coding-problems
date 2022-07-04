@@ -2,35 +2,29 @@
 # repeating characters
 
 from cmath import exp
+from struct import calcsize
 from turtle import st
 
 
 def no_repeat_substring(input: str):
     l = len(input)
-    if l == 0: return 0
-    if l == 1: return 1
-    maxLen = 1
-    curLen = 1
-    start = 0
-    end = 1
-    chars = {input[start]}
+    if l <= 1: return l
+    seen = {}
+    left = 0
+    longest = 0
     calculations = 0
-    while (end < l):
+    for right in range(l):
         calculations += 1
-        currentChar = input[end]
-        if currentChar not in chars:
-            curLen = end - start + 1
-            maxLen = max(curLen, maxLen)
-            chars.add(currentChar)
-            end += 1
-        else:
-            if (start < l - 1):
-                start += 1
-                end = start + 1
-                chars = {input[start]}
-            
-    print("Calculations:", calculations, l)
-    return maxLen
+        currentChar = input[right]
+        previousIndex = seen.get(currentChar)
+        if previousIndex is not None and previousIndex >= left:
+            left = previousIndex + 1
+        
+        seen[currentChar] = right
+        longest = max(longest, right - left + 1)
+
+    # print("Calculations:", calculations, l)
+    return longest
     
 def test(input: str, expected:int):
     a = no_repeat_substring(input)
