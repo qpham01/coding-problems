@@ -1,3 +1,5 @@
+from cmath import e, exp
+from operator import le
 from binary_tree import BinaryTree
 
 def test_list_init(input: list):
@@ -37,3 +39,24 @@ for i in range(len(targets)):
         assert result[1].data == targets[i]
     visited = result[2]
     print('search for ' + str(targets[i]) + ' visited', visited)
+
+empty_tree = BinaryTree()
+empty_level_order = empty_tree.level_order()
+assert empty_level_order == []
+
+def test_level_order(index:int, result:list, expected:list):
+    print("level order " + str(index), result[index])
+    assert result[index] == expected
+    
+lo_tree = BinaryTree([
+    [3, None, True], [6, 3, True], [1, 3, False],
+    [9, 6, True], [2, 6, False], [4, 1, False],
+    [5, 9, False], [8, 5, True]])
+
+level_order = lo_tree.level_order()
+
+test_level_order(0, level_order, [3])
+test_level_order(1, level_order, [6, 1])
+test_level_order(2, level_order, [9, 2, 4])
+test_level_order(3, level_order, [5])
+test_level_order(4, level_order, [8])

@@ -1,3 +1,6 @@
+from collections import deque
+from string import hexdigits
+
 class BinaryNode:
     def __init__(self, data):
         self.data = data
@@ -8,13 +11,11 @@ class BinaryNode:
         return str(self.data)
         
 class BinaryTree:
-    def __init__(self):
+    def __init__(self, data:list = None):
         self.root = None
-    
-    def __init__(self, data:list):
-        self.root = None
-        for item in data:
-            self.insert_node(item[0], item[1], item[2])
+        if data is not None:
+            for item in data:
+                self.insert_node(item[0], item[1], item[2])
             
     def insert_node(self, data, parent, left:bool):
         if parent is None:
@@ -65,3 +66,25 @@ class BinaryTree:
     def height(self):
         [height, _, _] = self.dfs_preorder(float('inf'))
         return height
+    
+    def level_order(self):
+        if self.root is None: return []
+        queue = deque()
+        queue.append(self.root)
+        result = []
+        self.level_order_search(queue, result)
+        return result
+        
+    def level_order_search(self, queue:deque, result:list):
+        if len(queue) == 0: return
+        level_data = []
+        next_level = []
+        while (len(queue) > 0):
+            node = queue.popleft()
+            level_data.append(node.data)
+            if node.left is not None: next_level.append(node.left)
+            if node.right is not None: next_level.append(node.right)
+        for node in next_level:
+            queue.append(node)
+        result.append(level_data)
+        self.level_order_search(queue, result)
