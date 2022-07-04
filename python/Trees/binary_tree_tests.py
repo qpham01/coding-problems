@@ -1,4 +1,3 @@
-from tkinter.messagebox import NO
 from binary_tree import BinaryTree
 
 def test_list_init(input: list):
