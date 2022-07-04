@@ -59,7 +59,7 @@ class LinkedList:
             node = temp
         self.head = prev_node                
 
-def test_constructor(values:list, head:int, tail:int):
+def test_constructor(values:list):
     llist = LinkedList(values)
     assert llist.head.data == values[0]
     assert llist.tail.data == values[len(values) - 1]
@@ -80,15 +80,21 @@ def test_value_list(data: list):
     result = llist.value_list()
     assert result == data
 
-def test_reverse(data: list):
+def test_reverse(data: list, head, tail):
     llist = LinkedList(data)
     data.reverse()
     llist.reverse()
     values = llist.value_list()
     assert values == data
+    assert llist.head.data == head
+    assert llist.tail.data == tail
     
-test_constructor([1, 2, 3, 4, 5], 1, 5)   
+test_constructor([1, 2, 3, 4, 5])   
+test_constructor([1])   
+test_constructor(['a', 'b', 'c'])   
 test_repr()
 test_iter([1, 2, 3, 4, 5])
 test_value_list([1, 2, 3, 4, 5])
-test_reverse([1, 2, 3, 4, 5])
+test_reverse([1, 2, 3, 4, 5], 5, 1)
+test_reverse([1, 2], 2, 1)
+test_reverse([5], 5, 5)
