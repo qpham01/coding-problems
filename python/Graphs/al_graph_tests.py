@@ -1,3 +1,4 @@
+from dis import dis
 from al_graph import AdjacencyListGraph
 
 graph0 = AdjacencyListGraph()
@@ -11,10 +12,12 @@ print(graph1.adjacencies)
 assert target is None
 print(visits)
 assert visits == [3, 0, 2, 4, 5, 1, 8, 6, 7]
-[target, visits] = graph1.dfs(3)
+[target, visits, distances] = graph1.dfs(3)
 assert target is None
-print(visits)
+print("visits", visits)
 assert visits == [3, 0, 1, 2, 8, 4, 6, 7, 5]
+print("distances", distances)
+assert distances == [0, 1, 2, 1, 2, 1, 2, 3, 1]
 
 starts2 = [1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 6]
 ends2   = [2, 5, 1, 3, 5, 2, 4, 3, 5, 6, 1, 2, 4, 4]
@@ -24,7 +27,9 @@ print(graph2.adjacencies)
 assert target is None
 print(visits)
 assert visits == [3, 2, 4, 1, 5, 6]
-[target, visits] = graph2.dfs(3)
+[target, visits, distances] = graph2.dfs(3)
 assert target is None
-print(visits)
+print("visits", visits)
 assert visits == [3, 2, 1, 5, 4, 6]
+print("distances", distances)
+assert distances == [0, 1, 2, 3, 4, 5]
