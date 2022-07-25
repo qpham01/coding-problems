@@ -58,6 +58,9 @@ def almost_palindrome(input:str, max_remove:int) -> bool:
     remove_count = 0
     return almost_palindrome_check(temp, p1, p2, remove_count, max_remove)
 
+assert almost_palindrome("", 1) is True
+assert almost_palindrome("a", 1) is True
+assert almost_palindrome("ab", 1) is True
 assert almost_palindrome("abcdefdba", 1) is False
 assert almost_palindrome("abccdba", 1) is True
 assert almost_palindrome("raceacar", 1) is True
