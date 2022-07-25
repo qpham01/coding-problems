@@ -1,3 +1,4 @@
+from doctest import FAIL_FAST
 import re
 
 def strip_non_alphanumeric(input:str) -> str:
@@ -36,3 +37,28 @@ assert is_palindrome("5a5") is True
 assert is_palindrome("123") is False
 assert is_palindrome("3b b3") is True
 assert is_palindrome("7c1c7") is True
+
+def almost_palindrome_check(input:str, p1:int, p2:int, remove_count:int, max_remove:int) -> bool:
+    while p1 < p2:
+        if input[p1] != input[p2]:
+            remove_count += 1
+            if remove_count > max_remove: return False
+            if almost_palindrome_check(input, p1 + 1, p2, remove_count, max_remove): return True
+            if almost_palindrome_check(input, p1, p2 - 1, remove_count, max_remove): return True
+        p1 += 1
+        p2 -= 1        
+    return True
+
+def almost_palindrome(input:str, max_remove:int) -> bool:
+    temp = strip_non_alphanumeric(input)
+    size = len(temp)
+    if size == 0 or size == 1: return True
+    p1 = 0
+    p2 = size - 1
+    remove_count = 0
+    return almost_palindrome_check(temp, p1, p2, remove_count, max_remove)
+
+assert almost_palindrome("abcdefdba", 1) is False
+assert almost_palindrome("abccdba", 1) is True
+assert almost_palindrome("raceacar", 1) is True
+assert almost_palindrome("abcdfdba", 2) is True
