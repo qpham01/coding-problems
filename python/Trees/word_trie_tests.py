@@ -30,3 +30,9 @@ assert "a" not in annWords
 assert "an" not in annWords
 assert "ann" not in annWords
 
+annoyWords = trie.getWords("annoy")
+print("annoy", annoyWords)
+assert len(annoyWords) == 3
+assert "annoy" in annoyWords
+
+

@@ -1,4 +1,3 @@
-from operator import le
 from tree_node import TreeNode
 
 class WordTrie:
