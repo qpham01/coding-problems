@@ -12,7 +12,9 @@ class WordTrie:
             parent = self.root
             self.words.add(word)
         letter = word[index]
-        child =  parent.children[letter] if letter in parent.children.keys() else parent.addChild(letter)
+        child = parent.children.get(letter)
+        if child is None:
+            child = parent.addChild(letter)
         self.addWord(word, child, index + 1)
 
     def getWords(self, snippet:str):
